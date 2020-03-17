@@ -1,3 +1,4 @@
+//homework code here
 const formSearch = document.querySelector('.form-search'),
 	inputCitiesFrom = formSearch.querySelector('.input__cities-from'),
 	dropdownCitiesFrom = formSearch.querySelector('.dropdown__cities-from'),
