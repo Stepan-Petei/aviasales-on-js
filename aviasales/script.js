@@ -64,6 +64,25 @@ const handlerCity = (event, input, list) => {
 	}
 }
 
+const renderCheapDay = (cheapTicket) => {
+	console.log(cheapTicket);
+};
+
+const renderCheapYear = (cheapTickets) => {
+	console.log(cheapTickets);
+};
+
+const renderCheap = (data, date) => {
+	const cheapTicketYear = JSON.parse(data).best_prices;
+
+	const cheapTicketDay = cheapTicketYear.filter(item => {
+		return item.depart_date === date;
+	});
+	
+	renderCheapDay(cheapTicketDay);
+	renderCheapYear(cheapTicketYear);
+};
+
 //обработчики событий, 3 секция
 inputCitiesFrom.addEventListener('input', () => {
 	showCity(inputCitiesFrom, dropdownCitiesFrom)
@@ -81,11 +100,34 @@ dropdownCitiesTo.addEventListener('click', () => {
 	handlerCity(event, inputCitiesTo, dropdownCitiesTo);
 });
 
+formSearch.addEventListener('submit', (event) => {
+	event.preventDefault();
+
+	const cityFrom = city.find(item => {
+		return inputCitiesFrom.value === item.name;
+	});
+
+	const cityTo = city.find(item => {
+		return inputCitiesTo.value === item.name;
+	});
+	
+	const formData = {
+		from: cityFrom.code,
+		to: cityTo.code,
+		when: inputDateDepart.value
+	}
+
+	console.log(formData);
+
+	const requestData = `?depart_date=${formData.when}&origin=${formData.from}`
+	+`&destination=${formData.to}&one_way=true`;
+
+	getData(CALENDAR + requestData, (response) => {
+		renderCheap(response, formData.when);
+	});
+});
+
 //вызовы функций, секция 4
 getData(PROXY + CITY_API, (data) => {
 	city = JSON.parse(data).filter(item => item.name);
 });
-
-//формирование и осуществление запроса на билет ЕКб - Калининград на 25 мая 2020 года
-const currentRequest = CALENDAR + `?origin=SVX&destination=KGD&depart_date=2020-05-25`;
-getData(currentRequest, data => console.log(JSON.parse(data)));
