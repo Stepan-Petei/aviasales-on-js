@@ -85,3 +85,7 @@ dropdownCitiesTo.addEventListener('click', () => {
 getData(PROXY + CITY_API, (data) => {
 	city = JSON.parse(data).filter(item => item.name);
 });
+
+//формирование и осуществление запроса на билет ЕКб - Калининград на 25 мая 2020 года
+const currentRequest = CALENDAR + `?origin=SVX&destination=KGD&depart_date=2020-05-25`;
+getData(currentRequest, data => console.log(JSON.parse(data)));
