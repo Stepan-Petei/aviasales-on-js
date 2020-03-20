@@ -111,21 +111,24 @@ formSearch.addEventListener('submit', (event) => {
 	const cityTo = city.find(item => {
 		return inputCitiesTo.value === item.name;
 	});
-	
-	const formData = {
-		from: cityFrom.code,
-		to: cityTo.code,
-		when: inputDateDepart.value
+	if (cityFrom !== undefined && cityTo !== undefined) {
+		const formData = {
+			from: cityFrom.code,
+			to: cityTo.code,
+			when: inputDateDepart.value
+		}
+
+		console.log(formData);
+
+		const requestData = `?depart_date=${formData.when}&origin=${formData.from}`
+		+`&destination=${formData.to}&one_way=true`;
+
+		getData(CALENDAR + requestData, (response) => {
+			renderCheap(response, formData.when);
+		});
+	} else {
+		return;
 	}
-
-	console.log(formData);
-
-	const requestData = `?depart_date=${formData.when}&origin=${formData.from}`
-	+`&destination=${formData.to}&one_way=true`;
-
-	getData(CALENDAR + requestData, (response) => {
-		renderCheap(response, formData.when);
-	});
 });
 
 //вызовы функций, секция 4
