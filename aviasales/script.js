@@ -111,7 +111,7 @@ formSearch.addEventListener('submit', (event) => {
 	const cityTo = city.find(item => {
 		return inputCitiesTo.value === item.name;
 	});
-	if (cityFrom !== undefined || cityTo !== undefined) {
+	if (cityFrom !== undefined && cityTo !== undefined) {
 		const formData = {
 			from: cityFrom.code,
 			to: cityTo.code,
