@@ -224,11 +224,17 @@ formSearch.addEventListener('submit', (event) => {
 		getData(CALENDAR + requestData, (data) => {
 			renderCheap(data, formData.when);
 		}, (error) => {
-			alert('В этом направлении нет рейсов');
+			cheapestTicket.style.display = 'block';
+			cheapestTicket.innerHTML = '<h3>В этом направлении нет рейсов</h3>';
+			cheapestTicket.append(h3);
+			otherCheapTickets.textContent = '';
 			console.error('Ошибка', error);
 		});
 	} else {
-		alert('Введите корректное название города!');
+		cheapestTicket.style.display = 'block';
+		cheapestTicket.innerHTML = '<h3>Введите корректное название города!</h3>';
+		otherCheapTickets.textContent = '';
+		cheapestTicket.append(h3);
 	}
 });
 
