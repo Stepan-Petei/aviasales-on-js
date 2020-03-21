@@ -15,7 +15,7 @@ const CITY_API = 'http://api.travelpayouts.com/data/ru/cities.json',
 	PROXY = 'https://cors-anywhere.herokuapp.com/',
 	MAX_COUNT = 10;
 /*'dataBase/cities.json' - та же БД городов, что и citiesApi, но локальная. 
-При вызове getData() вместо citiesApi (онлайн БД) убрать конкатенацию прокси со ссылкой*/
+При вызове getData() вместо CITY_API (онлайн БД) убрать конкатенацию прокси со ссылкой*/
 
 let city = [];
 
