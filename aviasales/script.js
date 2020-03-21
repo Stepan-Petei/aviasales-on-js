@@ -227,14 +227,12 @@ formSearch.addEventListener('submit', (event) => {
 			cheapestTicket.style.display = 'block';
 			cheapestTicket.innerHTML = '<h3>В этом направлении нет рейсов</h3>';
 			cheapestTicket.append(h3);
-			otherCheapTickets.textContent = '';
 			console.error('Ошибка', error);
 		});
 	} else {
 		cheapestTicket.style.display = 'block';
 		cheapestTicket.innerHTML = '<h3>Введите корректное название города!</h3>';
 		otherCheapTickets.textContent = '';
-		cheapestTicket.append(h3);
 	}
 });
 
