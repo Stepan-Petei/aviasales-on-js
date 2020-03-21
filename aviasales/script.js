@@ -13,7 +13,6 @@ const formSearch = document.querySelector('.form-search'),
 const CITY_API = 'http://api.travelpayouts.com/data/ru/cities.json',
 	CALENDAR = 'http://min-prices.aviasales.ru/calendar_preload',
 	PROXY = 'https://cors-anywhere.herokuapp.com/',
-	API_KEY = '5d2e3c92f5cbb5b20d19b432ed48fb95',
 	MAX_COUNT = 10;
 /*'dataBase/cities.json' - та же БД городов, что и citiesApi, но локальная. 
 При вызове getData() вместо citiesApi (онлайн БД) убрать конкатенацию прокси со ссылкой*/
