@@ -225,7 +225,7 @@ formSearch.addEventListener('submit', (event) => {
 		}, (error) => {
 			cheapestTicket.style.display = 'block';
 			cheapestTicket.innerHTML = '<h3>В этом направлении нет рейсов</h3>';
-			cheapestTicket.append(h3);
+			otherCheapTickets.textContent = '';
 			console.error('Ошибка', error);
 		});
 	} else {
