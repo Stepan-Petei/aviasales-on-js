@@ -24,7 +24,7 @@ const getData = (url, callback, reject = console.error) => {
 	fetch(url)
 	.then(response => {
 	 if (response.status !== 200) throw new Error(response.status);
-	 return response.text();
+	 return response.json();
 	})
 	.then(data => callback(data))
 	.catch(error => reject(error));
@@ -163,7 +163,7 @@ const renderCheapYear = (cheapTickets) => {
 };
 
 const renderCheap = (data, date) => {
-	const cheapTicketYear = JSON.parse(data).best_prices;
+	const cheapTicketYear = data.best_prices;
 
 	const cheapTicketDay = cheapTicketYear.filter(item => {
 		return item.depart_date === date;
@@ -229,7 +229,7 @@ formSearch.addEventListener('submit', (event) => {
 
 //вызовы функций, секция 4
 getData(PROXY + CITY_API, (data) => {
-	city = JSON.parse(data).filter(item => item.name).sort((a, b) => {
+	city = data.filter(item => item.name).sort((a, b) => {
 		if (a.name > b.name) return 1;
 		if (a.name < b.name) return -1;
 		return 0;
