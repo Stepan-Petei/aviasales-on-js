@@ -21,21 +21,13 @@ let city = [];
 
 //функции, 2 секция
 const getData = (url, callback, reject = console.error) => {
-	const request = new XMLHttpRequest();
-
-	request.open('GET', url);
-
-	request.addEventListener('readystatechange', () => {
-		if (request.readyState !== 4) return;
-
-		if (request.status === 200) {
-			callback(request.response);
-		} else {
-			reject(request.status);
-		}
-	});
-
-	request.send();
+	fetch(url)
+	.then(response => {
+	 if (response.status !== 200) throw new Error(response.status);
+	 return response.text();
+	})
+	.then(data => callback(data))
+	.catch(error => reject(error));
 }
 
 const showCity = (input, list) => {
